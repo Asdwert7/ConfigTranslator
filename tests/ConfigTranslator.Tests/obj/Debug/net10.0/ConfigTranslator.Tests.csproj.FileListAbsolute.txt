@@ -98,3 +98,4 @@
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ConfigTranslator.Tests.pdb
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ConfigTranslator.Tests.genruntimeconfig.cache
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ref/ConfigTranslator.Tests.dll
+/Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ConfigTranslator.Tests.sourcelink.json

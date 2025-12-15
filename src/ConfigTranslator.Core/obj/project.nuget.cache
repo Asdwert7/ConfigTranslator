@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "7opmbFPYllE=",
+  "success": true,
+  "projectFilePath": "/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/ConfigTranslator.Core.csproj",
+  "expectedPackageFiles": [
+    "/Users/asdmac/.nuget/packages/sprache/2.3.1/sprache.2.3.1.nupkg.sha512",
+    "/Users/asdmac/.nuget/packages/microsoft.netcore.app.runtime.win-x64/10.0.0/microsoft.netcore.app.runtime.win-x64.10.0.0.nupkg.sha512",
+    "/Users/asdmac/.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/10.0.0/microsoft.aspnetcore.app.runtime.win-x64.10.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

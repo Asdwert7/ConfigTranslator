@@ -1,0 +1,57 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "ConfigTranslator.CLI/1.0.0": {
+        "dependencies": {
+          "ConfigTranslator.Core": "1.0.0"
+        },
+        "runtime": {
+          "ConfigTranslator.CLI.dll": {}
+        }
+      },
+      "Sprache/2.3.1": {
+        "runtime": {
+          "lib/netstandard2.1/Sprache.dll": {
+            "assemblyVersion": "2.3.1.0",
+            "fileVersion": "2.3.1.0"
+          }
+        }
+      },
+      "ConfigTranslator.Core/1.0.0": {
+        "dependencies": {
+          "Sprache": "2.3.1"
+        },
+        "runtime": {
+          "ConfigTranslator.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ConfigTranslator.CLI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Sprache/2.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Q+mXeiTxiUYG3lKYF6TS82/SyB4F2613Q1yXTMwg4jWGHEEVC3yrzHtNcI4B3qnDI0+eJsezGJ0V+cToUytHWw==",
+      "path": "sprache/2.3.1",
+      "hashPath": "sprache.2.3.1.nupkg.sha512"
+    },
+    "ConfigTranslator.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -225,4 +225,4 @@ private static readonly Parser<ConfigValue> Number =
 
 ## Автор
 
-Выполнено в рамках учебного задания по конфигурационному управлению.
+asdwert7

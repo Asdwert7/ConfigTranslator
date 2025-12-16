@@ -4,24 +4,36 @@ using ConfigTranslator.Core.Models;
 namespace ConfigTranslator.Core;
 
 /// <summary>
-/// Парсер конфигурационного языка на основе библиотеки Sprache
+/// Парсер конфигурационного языка на основе библиотеки Sprache.
+/// Грамматика:
+///   Комментарий:  &lt;!-- ... --&gt;
+///   Число:        \d*\.\d+
+///   Имя:          [a-zA-Z][a-zA-Z0-9]*
+///   Словарь:      struct { имя = значение, ... }
+///   Константа:    global имя = значение;
+///   Ссылка:       [имя]
 /// </summary>
 public static class ConfigParser
 {
+    #region Базовые парсеры
+    
     /// <summary>
-    /// Многострочный комментарий: <!-- ... -->
+    /// Многострочный комментарий: &lt;!-- ... --&gt;
     /// </summary>
     private static readonly Parser<string> Comment =
-        from open in Sprache.Parse.String("<!--")
-        from content in Sprache.Parse.AnyChar.Until(Sprache.Parse.String("-->")).Text()
+        from open in Parse.String("<!--")
+        from content in Parse.AnyChar.Until(Parse.String("-->")).Text()
         select content;
 
     /// <summary>
-    /// Пробелы и комментарии (пропускаются)
+    /// Пробельные символы (пробелы, табы, переводы строк)
     /// </summary>
     private static readonly Parser<IEnumerable<char>> Whitespace =
-        Sprache.Parse.WhiteSpace.Many();
+        Parse.WhiteSpace.Many();
 
+    /// <summary>
+    /// Токенизатор: пропускает пробелы и комментарии вокруг парсера
+    /// </summary>
     private static Parser<T> Tok<T>(this Parser<T> parser) =>
         from leading in Whitespace
         from comments in Comment.Then(_ => Whitespace).Many()
@@ -30,102 +42,136 @@ public static class ConfigParser
         from trailingComments in Comment.Then(_ => Whitespace).Many()
         select item;
 
+    #endregion
+
+    #region Значения
+    
     /// <summary>
-    /// Число: \d*\.\d+
+    /// Число: \d*\.\d+ (обязательная точка и дробная часть)
+    /// Примеры: 3.14, .5, 0.0, 123.456
     /// </summary>
     private static readonly Parser<ConfigValue> Number =
-        from intPart in Sprache.Parse.Digit.Many().Text()
-        from dot in Sprache.Parse.Char('.')
-        from fracPart in Sprache.Parse.Digit.AtLeastOnce().Text()
+        from intPart in Parse.Digit.Many().Text()
+        from dot in Parse.Char('.')
+        from fracPart in Parse.Digit.AtLeastOnce().Text()
         select (ConfigValue)new NumberValue(
             double.Parse($"{intPart}.{fracPart}", 
             System.Globalization.CultureInfo.InvariantCulture));
 
     /// <summary>
-    /// Имя: [a-zA-Z][a-zA-Z0-9]*
+    /// Имя (идентификатор): [a-zA-Z][a-zA-Z0-9]*
     /// </summary>
     private static readonly Parser<string> Identifier =
-        from first in Sprache.Parse.Letter
-        from rest in Sprache.Parse.LetterOrDigit.Many().Text()
+        from first in Parse.Letter
+        from rest in Parse.LetterOrDigit.Many().Text()
         select first + rest;
 
     /// <summary>
     /// Ссылка на константу: [имя]
     /// </summary>
     private static readonly Parser<ConfigValue> ConstantRef =
-        from open in Sprache.Parse.Char('[').Tok()
+        from open in Parse.Char('[').Tok()
         from name in Identifier.Tok()
-        from close in Sprache.Parse.Char(']').Tok()
+        from close in Parse.Char(']').Tok()
         select (ConfigValue)new ConstantReference(name);
 
     /// <summary>
-    /// Значение: число, структура или ссылка на константу
+    /// Значение: число | словарь | ссылка на константу
     /// </summary>
     private static readonly Parser<ConfigValue> Value =
         Number.Tok()
-            .Or(Sprache.Parse.Ref(() => Struct))
+            .Or(Parse.Ref(() => Struct))
             .Or(ConstantRef);
 
+    #endregion
+
+    #region Структуры
+    
     /// <summary>
     /// Присваивание: имя = значение
     /// </summary>
     private static readonly Parser<KeyValuePair<string, ConfigValue>> Assignment =
         from name in Identifier.Tok()
-        from eq in Sprache.Parse.Char('=').Tok()
+        from eq in Parse.Char('=').Tok()
         from value in Value
         select new KeyValuePair<string, ConfigValue>(name, value);
 
     /// <summary>
-    /// Структура: struct { имя = значение, ... }
+    /// Словарь: struct { имя = значение, имя = значение, ... }
     /// </summary>
     private static readonly Parser<ConfigValue> Struct =
-        from keyword in Sprache.Parse.String("struct").Tok()
-        from open in Sprache.Parse.Char('{').Tok()
-        from entries in Assignment.DelimitedBy(Sprache.Parse.Char(',').Tok()).Optional()
-        from trailing in Sprache.Parse.Char(',').Tok().Optional()
-        from close in Sprache.Parse.Char('}').Tok()
+        from keyword in Parse.String("struct").Tok()
+        from open in Parse.Char('{').Tok()
+        from entries in Assignment.DelimitedBy(Parse.Char(',').Tok()).Optional()
+        from trailing in Parse.Char(',').Tok().Optional()
+        from close in Parse.Char('}').Tok()
         select (ConfigValue)new DictValue()
             .WithEntries(entries.GetOrElse(Enumerable.Empty<KeyValuePair<string, ConfigValue>>()));
 
+    #endregion
+
+    #region Верхний уровень
+    
     /// <summary>
     /// Объявление константы: global имя = значение;
     /// </summary>
     private static readonly Parser<KeyValuePair<string, ConfigValue>> GlobalDeclaration =
-        from keyword in Sprache.Parse.String("global").Tok()
+        from keyword in Parse.String("global").Tok()
         from name in Identifier.Tok()
-        from eq in Sprache.Parse.Char('=').Tok()
+        from eq in Parse.Char('=').Tok()
         from value in Value
-        from semi in Sprache.Parse.Char(';').Tok()
+        from semi in Parse.Char(';').Tok()
         select new KeyValuePair<string, ConfigValue>(name, value);
 
     /// <summary>
-    /// Элемент верхнего уровня: global или присваивание
+    /// Элемент верхнего уровня: объявление константы или присваивание
     /// </summary>
     private static readonly Parser<(bool isGlobal, KeyValuePair<string, ConfigValue> entry)> TopLevelItem =
         GlobalDeclaration.Select(g => (true, g))
             .Or(Assignment.Select(a => (false, a)));
 
     /// <summary>
-    /// Полный документ
+    /// Полный документ: последовательность элементов верхнего уровня через запятую
     /// </summary>
-    private static readonly Parser<List<(bool isGlobal, KeyValuePair<string, ConfigValue> entry)>> Document =
-        from leading in Whitespace
-        from comments in Comment.Then(_ => Whitespace).Many()
-        from items in TopLevelItem.DelimitedBy(Sprache.Parse.Char(',').Tok().Optional()).Optional()
-        from trailing in Sprache.Parse.Char(',').Tok().Optional()
-        from end in Whitespace.End()
-        select items.GetOrElse(Enumerable.Empty<(bool, KeyValuePair<string, ConfigValue>)>()).ToList();
-
     /// <summary>
-    /// Парсит входной текст и возвращает корневой словарь
+/// Элемент верхнего уровня с опциональной запятой после обычных присваиваний
+/// </summary>
+private static readonly Parser<(bool isGlobal, KeyValuePair<string, ConfigValue> entry)> TopLevelItemWithSeparator =
+    GlobalDeclaration.Select(g => (true, g))
+        .Or(from assignment in Assignment
+            from comma in Parse.Char(',').Tok().Optional()
+            select (false, assignment));
+
+/// <summary>
+/// Полный документ: последовательность элементов верхнего уровня
+/// </summary>
+private static readonly Parser<List<(bool isGlobal, KeyValuePair<string, ConfigValue> entry)>> Document =
+    from leading in Whitespace
+    from comments in Comment.Then(_ => Whitespace).Many()
+    from items in TopLevelItemWithSeparator.Many()
+    from end in Whitespace.End()
+    select items.ToList();
+    #endregion
+
+    #region Публичный API
+    
+    /// <summary>
+    /// Парсит входной текст и возвращает корневой словарь.
+    /// Константы (global) разрешаются и не попадают в результат.
     /// </summary>
+    /// <param name="input">Текст на конфигурационном языке</param>
+    /// <returns>Корневой словарь со всеми значениями</returns>
+    /// <exception cref="ParseException">При синтаксической ошибке или неизвестной константе</exception>
     public static DictValue ParseConfig(string input)
     {
         var result = Document.TryParse(input);
         
         if (!result.WasSuccessful)
         {
-            throw new ParseException($"Ошибка синтаксиса в позиции {result.Remainder.Position}: {result.Message}");
+            var position = GetLineColumn(input, result.Remainder.Position);
+            throw new ParseException(
+                $"Синтаксическая ошибка в строке {position.line}, позиция {position.column}: " +
+                $"{result.Message}");
         }
 
         var constants = new Dictionary<string, ConfigValue>();
@@ -148,8 +194,12 @@ public static class ConfigParser
         return root;
     }
 
+    #endregion
+
+    #region Вспомогательные методы
+    
     /// <summary>
-    /// Разрешает ссылки на константы
+    /// Разрешает ссылки на константы рекурсивно
     /// </summary>
     private static ConfigValue ResolveConstants(ConfigValue value, Dictionary<string, ConfigValue> constants)
     {
@@ -174,6 +224,32 @@ public static class ConfigParser
                 return value;
         }
     }
+
+    /// <summary>
+    /// Преобразует абсолютную позицию в строку и колонку
+    /// </summary>
+    private static (int line, int column) GetLineColumn(string input, int position)
+    {
+        int line = 1;
+        int column = 1;
+        
+        for (int i = 0; i < position && i < input.Length; i++)
+        {
+            if (input[i] == '\n')
+            {
+                line++;
+                column = 1;
+            }
+            else
+            {
+                column++;
+            }
+        }
+        
+        return (line, column);
+    }
+
+    #endregion
 }
 
 /// <summary>
@@ -192,7 +268,7 @@ public static class DictValueExtensions
 }
 
 /// <summary>
-/// Исключение при ошибке парсинга
+/// Исключение при ошибке парсинга или разрешения констант
 /// </summary>
 public class ParseException : Exception
 {

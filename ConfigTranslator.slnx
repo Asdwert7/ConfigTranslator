@@ -1,9 +1,0 @@
-<Solution>
-  <Folder Name="/src/">
-    <Project Path="src/ConfigTranslator.CLI/ConfigTranslator.CLI.csproj" />
-    <Project Path="src/ConfigTranslator.Core/ConfigTranslator.Core.csproj" />
-  </Folder>
-  <Folder Name="/tests/">
-    <Project Path="tests/ConfigTranslator.Tests/ConfigTranslator.Tests.csproj" />
-  </Folder>
-</Solution>

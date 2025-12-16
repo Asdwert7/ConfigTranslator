@@ -1,7 +1,7 @@
-/Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/.msCoverageSourceRootsMapping_ConfigTranslator.Tests
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/CoverletSourceRootsMapping_ConfigTranslator.Tests
-/Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/xunit.abstractions.dll
-/Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/xunit.runner.visualstudio.testadapter.dll
+/Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/xunit.runner.reporters.netcoreapp10.dll
+/Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/xunit.runner.utility.netcoreapp10.dll
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/ConfigTranslator.Tests.deps.json
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/ConfigTranslator.Tests.runtimeconfig.json
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/ConfigTranslator.Tests.dll
@@ -16,7 +16,9 @@
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.Common.dll
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/testhost.dll
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/Newtonsoft.Json.dll
+/Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/NuGet.Frameworks.dll
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/Sprache.dll
+/Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/xunit.abstractions.dll
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/xunit.assert.dll
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/xunit.core.dll
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/bin/Debug/net10.0/xunit.execution.dotnet.dll
@@ -92,10 +94,10 @@
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ConfigTranslator.Tests.AssemblyInfoInputs.cache
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ConfigTranslator.Tests.AssemblyInfo.cs
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ConfigTranslator.Tests.csproj.CoreCompileInputs.cache
+/Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ConfigTranslator.Tests.sourcelink.json
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ConfigTr.29EAFB4D.Up2Date
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ConfigTranslator.Tests.dll
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/refint/ConfigTranslator.Tests.dll
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ConfigTranslator.Tests.pdb
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ConfigTranslator.Tests.genruntimeconfig.cache
 /Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ref/ConfigTranslator.Tests.dll
-/Users/asdmac/Developer/ConfigTranslator/tests/ConfigTranslator.Tests/obj/Debug/net10.0/ConfigTranslator.Tests.sourcelink.json

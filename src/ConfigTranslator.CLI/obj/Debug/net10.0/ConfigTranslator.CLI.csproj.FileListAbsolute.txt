@@ -1,8 +1,3 @@
-/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/ConfigTranslator.CLI.csproj.AssemblyReference.cache
-/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/ConfigTranslator.CLI.GeneratedMSBuildEditorConfig.editorconfig
-/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/ConfigTranslator.CLI.AssemblyInfoInputs.cache
-/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/ConfigTranslator.CLI.AssemblyInfo.cs
-/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/ConfigTranslator.CLI.csproj.CoreCompileInputs.cache
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/bin/Debug/net10.0/ConfigTranslator.CLI
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/bin/Debug/net10.0/ConfigTranslator.CLI.deps.json
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/bin/Debug/net10.0/ConfigTranslator.CLI.runtimeconfig.json
@@ -11,6 +6,12 @@
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/bin/Debug/net10.0/Sprache.dll
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/bin/Debug/net10.0/ConfigTranslator.Core.dll
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/bin/Debug/net10.0/ConfigTranslator.Core.pdb
+/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/ConfigTranslator.CLI.csproj.AssemblyReference.cache
+/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/ConfigTranslator.CLI.GeneratedMSBuildEditorConfig.editorconfig
+/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/ConfigTranslator.CLI.AssemblyInfoInputs.cache
+/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/ConfigTranslator.CLI.AssemblyInfo.cs
+/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/ConfigTranslator.CLI.csproj.CoreCompileInputs.cache
+/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/ConfigTranslator.CLI.sourcelink.json
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/ConfigTr.A33EEB21.Up2Date
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/ConfigTranslator.CLI.dll
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.CLI/obj/Debug/net10.0/refint/ConfigTranslator.CLI.dll

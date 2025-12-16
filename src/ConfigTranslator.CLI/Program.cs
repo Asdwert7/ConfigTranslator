@@ -1,7 +1,10 @@
-﻿using ConfigTranslator.Core;
+using ConfigTranslator.Core;
 
 namespace ConfigTranslator.CLI;
 
+/// <summary>
+/// Точка входа CLI-приложения для трансляции конфигурации в JSON
+/// </summary>
 class Program
 {
     static int Main(string[] args)
@@ -60,10 +63,16 @@ class Program
     
     static void PrintUsage()
     {
+        Console.WriteLine("ConfigTranslator - трансляция конфигурационного языка в JSON");
+        Console.WriteLine();
         Console.WriteLine("Использование: ConfigTranslator.CLI [опции] <входной_файл>");
         Console.WriteLine();
         Console.WriteLine("Опции:");
         Console.WriteLine("  -i, --input <файл>  Путь к входному файлу конфигурации");
         Console.WriteLine("  -h, --help          Показать эту справку");
+        Console.WriteLine();
+        Console.WriteLine("Примеры:");
+        Console.WriteLine("  ConfigTranslator.CLI config.conf");
+        Console.WriteLine("  ConfigTranslator.CLI -i config.conf > output.json");
     }
 }

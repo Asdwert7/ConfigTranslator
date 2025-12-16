@@ -1,13 +1,13 @@
+/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/bin/Debug/net10.0/ConfigTranslator.Core.deps.json
+/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/bin/Debug/net10.0/ConfigTranslator.Core.dll
+/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/bin/Debug/net10.0/ConfigTranslator.Core.pdb
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/obj/Debug/net10.0/ConfigTranslator.Core.csproj.AssemblyReference.cache
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/obj/Debug/net10.0/ConfigTranslator.Core.GeneratedMSBuildEditorConfig.editorconfig
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/obj/Debug/net10.0/ConfigTranslator.Core.AssemblyInfoInputs.cache
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/obj/Debug/net10.0/ConfigTranslator.Core.AssemblyInfo.cs
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/obj/Debug/net10.0/ConfigTranslator.Core.csproj.CoreCompileInputs.cache
-/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/bin/Debug/net10.0/ConfigTranslator.Core.deps.json
-/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/bin/Debug/net10.0/ConfigTranslator.Core.dll
-/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/bin/Debug/net10.0/ConfigTranslator.Core.pdb
+/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/obj/Debug/net10.0/ConfigTranslator.Core.sourcelink.json
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/obj/Debug/net10.0/ConfigTranslator.Core.dll
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/obj/Debug/net10.0/refint/ConfigTranslator.Core.dll
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/obj/Debug/net10.0/ConfigTranslator.Core.pdb
 /Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/obj/Debug/net10.0/ref/ConfigTranslator.Core.dll
-/Users/asdmac/Developer/ConfigTranslator/src/ConfigTranslator.Core/obj/Debug/net10.0/ConfigTranslator.Core.sourcelink.json

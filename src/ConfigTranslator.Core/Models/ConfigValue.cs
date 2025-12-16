@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace ConfigTranslator.Core.Models;
 
 /// <summary>
@@ -5,11 +7,14 @@ namespace ConfigTranslator.Core.Models;
 /// </summary>
 public abstract class ConfigValue
 {
-    public abstract string ToJson(int indent = 0);
+    /// <summary>
+    /// Преобразует значение в JSON-представление
+    /// </summary>
+    public abstract void WriteJson(Utf8JsonWriter writer);
 }
 
 /// <summary>
-/// Числовое значение
+/// Числовое значение формата \d*\.\d+
 /// </summary>
 public class NumberValue : ConfigValue
 {
@@ -20,36 +25,50 @@ public class NumberValue : ConfigValue
         Value = value;
     }
     
-    public override string ToJson(int indent = 0)
+    public override void WriteJson(Utf8JsonWriter writer)
     {
-        return Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        writer.WriteNumberValue(Value);
     }
 }
 
 /// <summary>
-/// Словарь (struct)
+/// Словарь (struct { ... })
 /// </summary>
 public class DictValue : ConfigValue
 {
     public Dictionary<string, ConfigValue> Entries { get; } = new();
     
-    public override string ToJson(int indent = 0)
+    public override void WriteJson(Utf8JsonWriter writer)
     {
-        if (Entries.Count == 0)
-            return "{}";
-            
-        var indentStr = new string(' ', indent * 2);
-        var innerIndent = new string(' ', (indent + 1) * 2);
+        writer.WriteStartObject();
+        foreach (var (key, value) in Entries)
+        {
+            writer.WritePropertyName(key);
+            value.WriteJson(writer);
+        }
+        writer.WriteEndObject();
+    }
+    
+    /// <summary>
+    /// Преобразует корневой словарь в JSON-строку
+    /// </summary>
+    public string ToJson()
+    {
+        using var stream = new MemoryStream();
+        using var writer = new Utf8JsonWriter(stream, new JsonWriterOptions 
+        { 
+            Indented = true 
+        });
         
-        var entries = Entries.Select(kvp => 
-            $"{innerIndent}\"{kvp.Key}\": {kvp.Value.ToJson(indent + 1)}");
-            
-        return "{\n" + string.Join(",\n", entries) + $"\n{indentStr}}}";
+        WriteJson(writer);
+        writer.Flush();
+        
+        return System.Text.Encoding.UTF8.GetString(stream.ToArray());
     }
 }
 
 /// <summary>
-/// Ссылка на константу (временное значение при парсинге)
+/// Ссылка на константу [имя] — временное значение при парсинге
 /// </summary>
 public class ConstantReference : ConfigValue
 {
@@ -60,7 +79,7 @@ public class ConstantReference : ConfigValue
         Name = name;
     }
     
-    public override string ToJson(int indent = 0)
+    public override void WriteJson(Utf8JsonWriter writer)
     {
         throw new InvalidOperationException($"Константа '{Name}' не была разрешена");
     }

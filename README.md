@@ -59,7 +59,7 @@ dotnet run --project src/ConfigTranslator.CLI -- examples/game_config.conf > out
 # Справка
 dotnet run --project src/ConfigTranslator.CLI -- --help
 ```
-
+Если присутствует ошибка для test скорее всего версия .NET старая и не поддерживается для решения проблемы советую компилировать из под .NET 10 или в файлах csproj изменить мануально версию на свою .NET так как я не написал автоматическую смену версии для .NET
 ### Пример
 
 Входной файл `config.conf`:
